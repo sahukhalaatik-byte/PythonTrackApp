@@ -1,10 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Transaction</title>
 </head>
 <body>
-$END$
+
+<h1>Edit Transaction</h1>
+
+<form action="/edit/{{ trn.id }}" method="POST">
+
+                <label>Title</label>
+                <input type="text" name="title" value="{{ trn.title }}" required autofocus>
+
+                    <label>Amount (Rs)</label>
+                    <input type="number" name="amount" step="0.01" min="0.01" value="{{ trn.amount }}" required>
+
+                    <label>Date</label>
+                    <input type="date" name="date" value="{{ trn.date }}" required>
+
+                    <label>Type</label>
+                    <select name="type" required>
+                        <option value="income"  {% if trn.type == 'income'  %}selected{% endif %}>Income</option>
+                        <option value="expense" {% if trn.type == 'expense' %}selected{% endif %}>Expense</option>
+                    </select>
+
+                    <label>Category</label>
+                    <select name="category">
+                        <option {% if trn.category == 'Food'   %}selected{% endif %}>Food</option>
+                        <option {% if trn.category == 'Bill'   %}selected{% endif %}>Bill</option>
+                        <option {% if trn.category == 'Salary' %}selected{% endif %}>Salary</option>
+                        <option {% if trn.category == 'Travel' %}selected{% endif %}>Travel</option>
+                        <option {% if trn.category == 'Others' %}selected{% endif %}>Others</option>
+                    </select>
+
+                <label>Notes (Optional)</label>
+                <textarea name="notes">{{ trn.notes }}</textarea></br>
+
+                <button type="submit">Save</button>
+                <a href="{{ url_for('index') }}">Cancel</a>
+
+</form>
+
+
 </body>
 </html>

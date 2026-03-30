@@ -1,10 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Transaction</title>
 </head>
 <body>
-$END$
+
+<h1>Add Transaction</h1>
+<form action="/add" method="POST">
+
+                <label>Title</label>
+                <input type="text" name="title" required autofocus placeholder="e.g. Groceries, Salary…">
+
+                    <label>Amount (Rs)</label>
+                    <input type="number" name="amount" step="0.01" min="0.01" required placeholder="0.00">
+
+                    <label>Date</label>
+                    <input type="date" name="date" required>
+
+
+                    <label>Type</label>
+                    <select name="type" required>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+
+                    <label>Category</label>
+                    <select name="category">
+                        <option>Food</option>
+                        <option>Bill</option>
+                        <option>Salary</option>
+                        <option>Travel</option>
+                        <option>Others</option>
+                    </select>
+
+                <label>Notes (Optional)</label>
+                <textarea name="notes" placeholder="details…"></textarea>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Add Transaction</button>
+                <a href="{{ url_for('index') }}" class="btn btn-ghost">Cancel</a>
+            </div>
+</form>
+
 </body>
 </html>
